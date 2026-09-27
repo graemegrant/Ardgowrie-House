@@ -1,0 +1,258 @@
+'use client';
+
+import { useEffect, useState } from 'react';
+import { useTranslations, useLocale } from 'next-intl';
+import { Link, usePathname } from '@/i18n/navigation';
+import { hotelConfig } from '@/hotel.config';
+import { LOCALES, type Locale } from '@/lib/locales';
+import { BookButton } from './BookingModal';
+
+type NavChild = { labelKey: string; href: string };
+type NavItem = { labelKey: string; href?: string; children?: NavChild[] };
+
+const NAV: NavItem[] = [
+  {
+    labelKey: 'stay',
+    children: [
+      { labelKey: 'roomsAndSuites', href: '/rooms' },
+      { labelKey: 'specialOffers', href: '/offers' },
+    ],
+  },
+  { labelKey: 'dining', href: '/dining' },
+  { labelKey: 'experiences', href: '/experiences' },
+  { labelKey: 'weddings', href: '/weddings' },
+  { labelKey: 'giftVouchers', href: '/gift-vouchers' },
+  {
+    labelKey: 'discover',
+    children: [
+      { labelKey: 'journal', href: '/journal' },
+      { labelKey: 'ourStory', href: '/about' },
+      { labelKey: 'location', href: '/location' },
+      { labelKey: 'contact', href: '/contact' },
+    ],
+  },
+];
+
+export default function Navbar() {
+  const t = useTranslations('nav');
+  const tCommon = useTranslations('common');
+  const locale = useLocale() as Locale;
+  const pathname = usePathname();
+  const [scrolled, setScrolled] = useState(false);
+  const [mobileOpen, setMobileOpen] = useState(false);
+  const [openAccordion, setOpenAccordion] = useState<string | null>(null);
+
+  useEffect(() => {
+    const onScroll = () => setScrolled(window.scrollY > 50);
+    onScroll();
+    window.addEventListener('scroll', onScroll, { passive: true });
+    return () => window.removeEventListener('scroll', onScroll);
+  }, []);
+
+  useEffect(() => {
+    setMobileOpen(false);
+    setOpenAccordion(null);
+  }, [pathname]);
+
+  useEffect(() => {
+    document.body.style.overflow = mobileOpen ? 'hidden' : '';
+    return () => { document.body.style.overflow = ''; };
+  }, [mobileOpen]);
+
+  const solid = scrolled || mobileOpen;
+  const isActive = (item: NavItem) =>
+    item.href === pathname || item.children?.some((c) => pathname.startsWith(c.href));
+
+  return (
+    <header
+      className={`fixed inset-x-0 top-0 z-50 transition-colors duration-500 ${
+        solid ? 'bg-forest' : 'bg-transparent'
+      }`}
+    >
+      <div className="mx-auto flex max-w-7xl items-center px-6 py-5 lg:px-10">
+        <Link href="/" className="font-heading text-2xl font-medium tracking-wide text-parchment">
+          {hotelConfig.name}
+        </Link>
+
+        {/* Desktop nav — a fixed margin gives a consistent gap from the logo;
+            justify-between previously let this collapse to a noticeably
+            tighter gap than the nav's own item spacing on wide viewports,
+            since it only balances space against the (wide) right-hand
+            cluster, not against the logo directly. The 1024–1279px band
+            (lg but not yet xl, where the phone number is still hidden) has
+            no slack at all — six top-level items plus the logo and the
+            language/CTA cluster fill it edge to edge — so both the item
+            gap and the logo margin step down there and only open up at
+            xl+, where there's actually room. */}
+        <nav className="hidden items-center gap-5 lg:ml-4 lg:flex xl:ml-10 xl:gap-6" aria-label="Main">
+          {NAV.map((item) => (
+            <div key={item.labelKey} className="group relative">
+              {item.href ? (
+                <Link
+                  href={item.href}
+                  className={`font-body text-2xs uppercase tracking-25 transition-colors ${
+                    isActive(item) ? 'text-gold' : 'text-parchment hover:text-gold'
+                  }`}
+                >
+                  {t(item.labelKey)}
+                </Link>
+              ) : (
+                <button
+                  type="button"
+                  aria-haspopup="true"
+                  className={`font-body text-2xs uppercase tracking-25 transition-colors ${
+                    isActive(item) ? 'text-gold' : 'text-parchment group-focus-within:text-gold group-hover:text-gold'
+                  }`}
+                >
+                  {t(item.labelKey)}
+                </button>
+              )}
+              {item.children && (
+                <div className="invisible absolute left-1/2 top-full -translate-x-1/2 pt-5 opacity-0 transition-all duration-300 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+                  <ul className="w-56 border-t-2 border-gold bg-forest py-3">
+                    {item.children.map((child) => (
+                      <li key={child.href}>
+                        <Link
+                          href={child.href}
+                          className={`block px-6 py-2.5 font-body text-2xs uppercase tracking-20 transition-colors ${
+                            pathname.startsWith(child.href) ? 'text-gold' : 'text-parchment/85 hover:text-gold'
+                          }`}
+                        >
+                          {t(child.labelKey)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
+          ))}
+        </nav>
+
+        <div className="ml-auto hidden items-center gap-5 lg:flex">
+          <a
+            href={`tel:${hotelConfig.contact.phoneHref}`}
+            className="hidden font-body text-xs text-parchment/80 transition-colors hover:text-gold xl:block"
+          >
+            {hotelConfig.contact.phone}
+          </a>
+
+          {/* Language switcher — preserves the current page, only swaps locale */}
+          <div className="group relative">
+            <button
+              type="button"
+              aria-haspopup="true"
+              aria-label={tCommon('changeLanguage')}
+              className="font-body text-2xs uppercase tracking-25 text-parchment transition-colors group-focus-within:text-gold group-hover:text-gold"
+            >
+              {locale}
+            </button>
+            <div className="invisible absolute right-0 top-full pt-5 opacity-0 transition-all duration-300 group-focus-within:visible group-focus-within:opacity-100 group-hover:visible group-hover:opacity-100">
+              <ul className="w-40 border-t-2 border-gold bg-forest py-3">
+                {LOCALES.map((l) => (
+                  <li key={l.id}>
+                    <Link
+                      href={pathname}
+                      locale={l.id}
+                      className={`block px-6 py-2.5 font-body text-2xs uppercase tracking-20 transition-colors ${
+                        l.id === locale ? 'text-gold' : 'text-parchment/85 hover:text-gold'
+                      }`}
+                    >
+                      {l.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </div>
+
+          <BookButton className="rounded-ctrl border border-gold bg-gold px-6 py-3 font-body text-2xs uppercase tracking-25 text-forest transition-colors duration-300 hover:bg-transparent hover:text-gold" />
+        </div>
+
+        {/* Mobile toggle — 48×48 hit area (WCAG 2.5.8). ml-auto pins it to the
+            far right: on mobile, nav and the desktop right-hand cluster are
+            both hidden, so this button is the only flex item after the logo
+            and needs its own push — the ml-auto on that desktop cluster
+            (above) only applies when that cluster is actually visible. */}
+        <button
+          type="button"
+          className="-mr-2 ml-auto flex size-12 flex-col items-center justify-center gap-7px lg:hidden"
+          onClick={() => setMobileOpen((v) => !v)}
+          aria-expanded={mobileOpen}
+          aria-label={t('toggleMenu')}
+        >
+          <span className={`block h-px w-7 bg-parchment transition-transform duration-300 ${mobileOpen ? 'translate-y-2 rotate-45' : ''}`} />
+          <span className={`block h-px w-7 bg-parchment transition-opacity duration-300 ${mobileOpen ? 'opacity-0' : ''}`} />
+          <span className={`block h-px w-7 bg-parchment transition-transform duration-300 ${mobileOpen ? '-translate-y-2 -rotate-45' : ''}`} />
+        </button>
+      </div>
+
+      {/* Mobile menu */}
+      <div
+        className={`overflow-y-auto bg-forest transition-max-height duration-700 ease-out-expo lg:hidden ${
+          mobileOpen ? 'max-h-nav-open' : 'max-h-0'
+        }`}
+      >
+        <nav className="space-y-1 px-6 pb-10 pt-4" aria-label="Mobile">
+          {NAV.map((item) =>
+            item.href ? (
+              <Link
+                key={item.labelKey}
+                href={item.href}
+                className="block border-b border-parchment/10 py-4 font-body text-xs uppercase tracking-25 text-parchment"
+              >
+                {t(item.labelKey)}
+              </Link>
+            ) : (
+              <div key={item.labelKey} className="border-b border-parchment/10">
+                <button
+                  type="button"
+                  className="flex w-full items-center justify-between py-4 font-body text-xs uppercase tracking-25 text-parchment"
+                  onClick={() => setOpenAccordion(openAccordion === item.labelKey ? null : item.labelKey)}
+                  aria-expanded={openAccordion === item.labelKey}
+                >
+                  {t(item.labelKey)}
+                  <span className={`transition-transform duration-300 ${openAccordion === item.labelKey ? 'rotate-45' : ''}`}>+</span>
+                </button>
+                <div
+                  className={`overflow-hidden transition-max-height duration-500 ease-out-expo ${
+                    openAccordion === item.labelKey ? 'max-h-64' : 'max-h-0'
+                  }`}
+                >
+                  <ul className="space-y-3 pb-5 pl-4">
+                    {item.children?.map((child) => (
+                      <li key={child.href}>
+                        <Link href={child.href} className="font-body text-xs uppercase tracking-20 text-parchment/70">
+                          {t(child.labelKey)}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            ),
+          )}
+          {/* Language switcher */}
+          <div className="flex items-center gap-5 border-b border-parchment/10 py-4" role="group" aria-label={tCommon('changeLanguage')}>
+            {LOCALES.map((l) => (
+              <Link
+                key={l.id}
+                href={pathname}
+                locale={l.id}
+                className={`font-body text-xs uppercase tracking-25 ${
+                  l.id === locale ? 'text-gold' : 'text-parchment/70'
+                }`}
+              >
+                {l.id}
+              </Link>
+            ))}
+          </div>
+
+          <div className="pt-6">
+            <BookButton className="w-full rounded-ctrl bg-gold px-6 py-4 font-body text-2xs uppercase tracking-25 text-forest" />
+          </div>
+        </nav>
+      </div>
+    </header>
+  );
+}
