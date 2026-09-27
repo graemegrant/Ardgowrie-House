@@ -99,7 +99,7 @@ export default async function WeddingsPage({ params }: { params: Promise<{ local
             </p>
             <Link
               href="/contact"
-              className="mt-10 inline-block rounded-ctrl bg-gold px-10 py-4 font-body text-2xs uppercase tracking-25 text-forest transition-colors duration-300 hover:bg-parchment"
+              className="mt-10 inline-block rounded-ctrl bg-goldbright px-10 py-4 font-body text-2xs uppercase tracking-25 text-forest transition-colors duration-300 hover:bg-parchment"
             >
               {t('enquireDate')}
             </Link>

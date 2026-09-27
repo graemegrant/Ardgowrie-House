@@ -21,6 +21,13 @@ export default defineType({
         'Only needed alongside Room type if this specific physical room also has its own name distinct from its category (e.g. Room type "Garden Suite", name "The Rose Room"). Leave blank for both the typical category-based case and the named-room case above — in the named-room case the proper name already lives in Room type, so this field is redundant.',
     }),
     defineField({ name: 'slug', type: 'slug', options: { source: 'roomType.en' }, validation: (r) => r.required() }),
+    defineField({
+      name: 'hook',
+      title: 'One-line hook',
+      type: 'localeString',
+      description:
+        'A single evocative line shown on the room card, under the name — the only editorial copy that appears there (everything else on the card is dimensions/price/availability). Distinct from Description below, which is the long-form copy on the room’s own detail page. Optional — the card lays out fine without it.',
+    }),
     defineField({ name: 'description', type: 'localeText' }),
     defineField({ name: 'heroImage', type: 'image', options: { hotspot: true } }),
     defineField({

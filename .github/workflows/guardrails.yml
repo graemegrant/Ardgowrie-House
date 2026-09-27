@@ -49,6 +49,9 @@ jobs:
       - name: Lint (AGENTS.md §3 token rules)
         run: npm run lint
 
+      - name: Contrast check (AGENTS.md §3 — WCAG AA on brand token pairs)
+        run: npm run check-contrast
+
       - name: Typecheck
         run: npx tsc --noEmit
 

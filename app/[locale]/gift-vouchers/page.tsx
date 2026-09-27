@@ -54,7 +54,7 @@ export default async function GiftVouchersPage({ params }: { params: Promise<{ l
                   <p className="mt-4 grow font-body text-sm font-light leading-relaxed text-ink/75">{pickLocale(v.description, locale)}</p>
                   <Link
                     href="/contact"
-                    className="mt-8 block rounded-ctrl bg-forest px-8 py-4 text-center font-body text-2xs uppercase tracking-25 text-parchment transition-colors duration-300 hover:bg-gold hover:text-forest"
+                    className="mt-8 block rounded-ctrl bg-forest px-8 py-4 text-center font-body text-2xs uppercase tracking-25 text-parchment transition-colors duration-300 hover:bg-goldbright hover:text-forest"
                   >
                     {t('purchaseThis')}
                   </Link>

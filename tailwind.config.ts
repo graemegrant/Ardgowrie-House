@@ -7,7 +7,7 @@ import { palette } from './lib/tokens';
  * The seven hex values live in `lib/tokens.ts` so server-side image
  * generation can share them; edit them there, not here.
  *
- * Craigmore heritage palette (2026 refresh): peat, stone, aged brass.
+ * Ardgowrie heritage palette (2026 refresh): peat, stone, aged brass.
  * Depth comes from gradient merges (see globals.css) rather than flat fills.
  */
 const config: Config = {

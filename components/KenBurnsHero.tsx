@@ -77,7 +77,7 @@ export default function KenBurnsHero({ image }: { image: unknown }) {
           {/* One primary CTA (booking, solid) per AGENTS.md §5; rooms is the
               quieter secondary. */}
           <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-            <BookButton className="w-64 rounded-ctrl bg-gold px-8 py-4 font-body text-2xs uppercase tracking-25 text-forest transition-colors duration-300 hover:bg-parchment sm:w-auto" />
+            <BookButton className="w-64 rounded-ctrl bg-goldbright px-8 py-4 font-body text-2xs uppercase tracking-25 text-forest transition-colors duration-300 hover:bg-parchment sm:w-auto" />
             <Link
               href="/rooms"
               className="w-64 rounded-ctrl border border-parchment/60 px-8 py-4 font-body text-2xs uppercase tracking-25 text-parchment transition-colors duration-300 hover:bg-parchment hover:text-forest sm:w-auto"

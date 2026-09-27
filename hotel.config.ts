@@ -1,4 +1,14 @@
 /**
+ * FICTIONAL DEMO CLIENT — all identity data is placeholder.
+ *
+ * Ardgowrie House does not exist. It is a mock client used to exercise the
+ * fable-template build (content model, i18n, SEO, CRO) end to end without
+ * attaching real business data to the template. `isDemo: true` below drives
+ * noindex robots meta + sitemap exclusion (see app/robots.ts, app/sitemap.ts)
+ * so this mock can never surface in real search results. Contact details use
+ * ranges reserved for fiction (Ofcom drama phone numbers, example.com email)
+ * — see AGENTS.md §4 for what a *real* client rewrite of this file entails.
+ *
  * hotel.config.ts — single source of truth for client identity.
  * Cloning for a new hotel: edit this file, swap the Tailwind colour
  * tokens (lib/tokens.ts), point env vars at the new Sanity project +
@@ -14,29 +24,32 @@
 import type { LocaleField } from './lib/locales';
 
 export const hotelConfig = {
-  name: 'Craigmore House',
+  /** Fictional demo client — see file banner. Gates noindex + sitemap exclusion. */
+  isDemo: true,
+  name: 'Ardgowrie House',
   tagline: {
-    en: 'Highland solitude, done properly.',
-    fr: 'La solitude des Highlands, comme il se doit.',
-    de: 'Hochland-Stille, wie sie sein sollte.',
-    es: 'La soledad de las Highlands, como debe ser.',
+    en: 'A Highland retreat, invented for the occasion.',
+    fr: 'Une retraite des Highlands, inventée pour l’occasion.',
+    de: 'Ein Rückzugsort im Hochland, eigens ersonnen.',
+    es: 'Un retiro en las Highlands, creado para la ocasión.',
   } as LocaleField,
   description: {
-    en: 'A twelve-room country house hotel in Highland Perthshire. Open fires, serious cooking, and four hundred acres of silence.',
-    fr: 'Un hôtel de charme de douze chambres au cœur des Highlands du Perthshire. Feux de cheminée, cuisine exigeante et quatre cents acres de silence.',
-    de: 'Ein Landhotel mit zwölf Zimmern im schottischen Hochland von Perthshire. Offene Kamine, anspruchsvolle Küche und vierhundert Morgen Stille.',
-    es: 'Un hotel rural de doce habitaciones en las Highlands de Perthshire. Chimeneas encendidas, cocina seria y cuatrocientos acres de silencio.',
+    en: 'An eighteen-room country house hotel in the Perthshire hills, built entirely as a demo client for the Fable template. Open fires, quiet corridors, and no booking ever reaches a real front desk.',
+    fr: 'Un hôtel de charme de dix-huit chambres dans les collines du Perthshire, conçu entièrement comme client de démonstration pour le modèle Fable. Feux de cheminée, couloirs paisibles, et aucune réservation n’atteint jamais une véritable réception.',
+    de: 'Ein Landhotel mit achtzehn Zimmern in den Hügeln von Perthshire, ausschließlich als Demo-Kunde für die Fable-Vorlage angelegt. Offene Kamine, ruhige Flure – keine Buchung erreicht je eine echte Rezeption.',
+    es: 'Un hotel rural de dieciocho habitaciones en las colinas de Perthshire, creado enteramente como cliente de demostración para la plantilla Fable. Chimeneas encendidas, pasillos tranquilos, y ninguna reserva llega jamás a una recepción real.',
   } as LocaleField,
   location: {
     // Structured parts — used for schema.org PostalAddress and local SEO.
-    // A vague address breaks hotel rich results.
-    street: 'Craigmore Road',
-    locality: 'Aberfeldy',
+    // Fictional street + village: not Paisley or St Andrews (real hotels
+    // of a similar name exist there) and not any identifiable real address.
+    street: 'Balcorrie Brae',
+    locality: 'Balcorrie',
     region: 'Perthshire',
-    postalCode: 'PH15 2NR',
+    postalCode: 'PH11 9ZZ',
     country: 'GB',
     // Human-readable single line for footers / contact page.
-    address: 'Craigmore Road, Aberfeldy, Perthshire, PH15 2NR',
+    address: 'Balcorrie Brae, Balcorrie, Perthshire, PH11 9ZZ',
     // Longer display label used in hero eyebrows / footer legal line.
     regionLabel: {
       en: 'Perthshire, Scotland',
@@ -44,20 +57,18 @@ export const hotelConfig = {
       de: 'Perthshire, Schottland',
       es: 'Perthshire, Escocia',
     } as LocaleField,
-    // Rooftop coordinates to 5 d.p. — feeds JSON-LD geo and the /location
-    // map pin. Set to the real building before launch.
-    lat: 56.62194,
-    lng: -3.86694,
+    // Fictional rural coordinates — open Perthshire hill country, not tied
+    // to any real property. Demo only; see isDemo above.
+    lat: 56.54892,
+    lng: -3.94217,
   },
   contact: {
-    // Display form (spacing, national prefix in brackets).
-    phone: '+44 (0)1887 000 000',
-    // Dialable E.164 form — used for tel: links and schema.org telephone.
-    // Never derive this from `phone` at runtime; keep it explicit.
-    phoneHref: '+441887000000',
-    email: 'enquiries@craigmorehouse.com',
-    instagram: 'https://instagram.com/craigmorehouse',
-    facebook: 'https://facebook.com/craigmorehouse',
+    // Ofcom drama-reserved range (01632 960xxx) — cannot dial a real number.
+    phone: '+44 (0)1632 960 512',
+    phoneHref: '+441632960512',
+    email: 'enquiries@ardgowriehouse.example.com',
+    instagram: 'https://instagram.com/ardgowriehouse',
+    facebook: 'https://facebook.com/ardgowriehouse',
   },
   /** Reception desk hours — display string plus 24h forms for schema. */
   reception: {
@@ -71,14 +82,14 @@ export const hotelConfig = {
     closes: '23:00',
   },
   /** Guest-facing amenities — drives schema amenityFeature and can be
-   *  surfaced on-page. Keep to things that are actually true. */
+   *  surfaced on-page. Fictional but plausible for an 18-room house. */
   amenities: [
     { en: 'Free on-site parking', fr: 'Parking gratuit sur place', de: 'Kostenlose Parkplätze vor Ort', es: 'Aparcamiento gratuito en el hotel' },
     { en: 'EV charging', fr: 'Bornes de recharge électrique', de: 'Ladestationen für Elektrofahrzeuge', es: 'Puntos de recarga eléctrica' },
     { en: 'Dog-friendly rooms', fr: 'Chambres acceptant les chiens', de: 'Hundefreundliche Zimmer', es: 'Habitaciones que admiten perros' },
-    { en: 'Restaurant', fr: 'Restaurant', de: 'Restaurant', es: 'Restaurante' },
+    { en: 'Restaurant & whisky bar', fr: 'Restaurant et bar à whisky', de: 'Restaurant und Whiskybar', es: 'Restaurante y bar de whisky' },
     { en: 'Free breakfast', fr: 'Petit-déjeuner offert', de: 'Kostenloses Frühstück', es: 'Desayuno incluido' },
-    { en: 'Step-free access', fr: 'Accès de plain-pied', de: 'Stufenfreier Zugang', es: 'Acceso sin escalones' },
+    { en: 'Step-free access to ground-floor rooms', fr: 'Accès de plain-pied aux chambres du rez-de-chaussée', de: 'Stufenfreier Zugang zu Erdgeschosszimmern', es: 'Acceso sin escalones a las habitaciones de la planta baja' },
     { en: 'Family rooms', fr: 'Chambres familiales', de: 'Familienzimmer', es: 'Habitaciones familiares' },
     { en: 'Free Wi-Fi', fr: 'Wi-Fi gratuit', de: 'Kostenloses WLAN', es: 'Wi-Fi gratuito' },
   ] as LocaleField[],
@@ -94,22 +105,22 @@ export const hotelConfig = {
     } as LocaleField,
     /** Location phrase appended to titles and used in fallback meta. */
     locationLabel: {
-      en: 'Aberfeldy, Perthshire',
-      fr: 'Aberfeldy, Perthshire',
-      de: 'Aberfeldy, Perthshire',
-      es: 'Aberfeldy, Perthshire',
+      en: 'Balcorrie, Perthshire',
+      fr: 'Balcorrie, Perthshire',
+      de: 'Balcorrie, Perthshire',
+      es: 'Balcorrie, Perthshire',
     } as LocaleField,
     /**
      * Emit an aggregateRating in the Hotel JSON-LD, derived from the
      * featured testimonials. Only set true once those testimonials are
      * genuine, verifiable guest reviews — a fabricated rating risks a
-     * Google manual action.
+     * Google manual action. Always false for the fictional demo client.
      */
     publishAggregateRating: false,
   },
   bookingEngineUrl: process.env.NEXT_PUBLIC_BOOKING_ENGINE_URL || '',
-  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.craigmorehouse.com',
-  rooms: 12,
+  siteUrl: process.env.NEXT_PUBLIC_SITE_URL || 'https://www.ardgowriehouse.example.com',
+  rooms: 18,
   starRating: 4,
   priceRange: '£££',
   // Display strings for the page; checkInISO / checkOutISO are the

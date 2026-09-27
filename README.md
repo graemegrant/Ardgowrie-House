@@ -1,4 +1,4 @@
-# Craigmore House — Next.js 15 Hotel Website
+# Ardgowrie House — Next.js 15 Hotel Website
 
 Production-ready luxury hotel website. Clone this repo and update `hotel.config.ts` to rebrand for any property.
 

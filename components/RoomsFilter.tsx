@@ -18,7 +18,7 @@ export default function RoomsFilter({ rooms }: { rooms: Room[] }) {
   const [active, setActive] = useState<string>('All');
   const filtered = active === 'All' ? rooms : rooms.filter((r) => r.roomType === active);
   /* A filter with one tab per room (every roomType unique — the
-     named-room edge case, e.g. Craigmore's own 6 individually-named
+     named-room edge case, e.g. Ardgowrie's own 6 individually-named
      rooms) groups nothing and adds no value, so skip rendering it
      entirely rather than show a tab per room. */
   const showFilter = distinctTypes.length < rooms.length;

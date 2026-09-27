@@ -3,7 +3,7 @@ import { getTranslations } from 'next-intl/server';
 import { Link } from '@/i18n/navigation';
 import { hotelConfig } from '@/hotel.config';
 import { pageMetadata } from '@/lib/seo';
-import { pickLocale, resolveRoom, resolveExperience, resolveOffer, resolveTestimonial, resolveJournalPost } from '@/lib/resolveLocale';
+import { pickLocale, resolveRoom, resolveExperience, resolveOffer, isOfferActive, resolveTestimonial, resolveJournalPost } from '@/lib/resolveLocale';
 import { isLocale, DEFAULT_LOCALE, type Locale } from '@/lib/locales';
 import { sanityFetch } from '@/lib/sanity';
 import {
@@ -53,7 +53,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
   ]);
   const rooms = rawRooms.map((r) => resolveRoom(r, locale));
   const experiences = rawExperiences.map((e) => resolveExperience(e, locale));
-  const offers = rawOffers.map((o) => resolveOffer(o, locale));
+  const offers = rawOffers.map((o) => resolveOffer(o, locale)).filter((o) => isOfferActive(o));
   const testimonials = rawTestimonials.map((t) => resolveTestimonial(t, locale));
   const journalPosts = rawJournalPosts.map((p) => resolveJournalPost(p, locale));
 
@@ -238,7 +238,7 @@ export default async function HomePage({ params }: { params: Promise<{ locale: s
               {t('finalHeadingLine1')}<br />{t('finalHeadingLine2')}
             </h2>
             <div className="mt-12 flex flex-col items-center justify-center gap-4 sm:flex-row">
-              <BookButton className="w-64 rounded-ctrl bg-gold px-8 py-4 font-body text-2xs uppercase tracking-25 text-forest transition-colors duration-300 hover:bg-parchment sm:w-auto" />
+              <BookButton className="w-64 rounded-ctrl bg-goldbright px-8 py-4 font-body text-2xs uppercase tracking-25 text-forest transition-colors duration-300 hover:bg-parchment sm:w-auto" />
               <a
                 href={`tel:${hotelConfig.contact.phoneHref}`}
                 className="w-64 rounded-ctrl border border-parchment/60 px-8 py-4 font-body text-2xs uppercase tracking-25 text-parchment transition-colors duration-300 hover:bg-parchment hover:text-forest sm:w-auto"

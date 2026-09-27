@@ -70,7 +70,7 @@ const t4 = (en: string, fr: string, de: string, es: string): LocaleField => ({ e
 
 export const rooms: RoomI18n[] = [
   {
-    // Craigmore is the "named-room" edge case (SANITY-SCHEMA.md): every
+    // Ardgowrie is the "named-room" edge case (SANITY-SCHEMA.md): every
     // room is genuinely one-of-a-kind, so its proper name goes directly
     // in roomType rather than a shared category — roomCount stays 1.
     roomType: t4('The Schiehallion Suite', 'La Suite Schiehallion', 'Die Schiehallion-Suite', 'La Suite Schiehallion'),
@@ -250,10 +250,10 @@ export const experiences: ExperienceI18n[] = [
     slug: 'private-whisky-tasting',
     category: 'Food & Drink',
     description: t4(
-      'An evening in the library with our keeper of the cellar: six drams, poured chronologically, from Lowland softness to the peat of the islands — finishing with the Craigmore estate blend, bottled for the house alone.',
-      'Une soirée à la bibliothèque avec notre maître de chai : six drams, servis dans l’ordre chronologique, de la douceur des Lowlands à la tourbe des îles — pour finir avec l’assemblage du domaine de Craigmore, mis en bouteille pour la seule maison.',
-      'Ein Abend in der Bibliothek mit unserem Kellermeister: sechs Drams, chronologisch serviert, von der Sanftheit der Lowlands bis zum Torf der Inseln — zum Abschluss der Craigmore-Hausverschnitt, exklusiv für das Haus abgefüllt.',
-      'Una velada en la biblioteca con nuestro maestro de bodega: seis drams, servidos en orden cronológico, desde la suavidad de las Lowlands hasta la turba de las islas, terminando con la mezcla de la finca Craigmore, embotellada exclusivamente para la casa.',
+      'An evening in the library with our keeper of the cellar: six drams, poured chronologically, from Lowland softness to the peat of the islands — finishing with the Ardgowrie estate blend, bottled for the house alone.',
+      'Une soirée à la bibliothèque avec notre maître de chai : six drams, servis dans l’ordre chronologique, de la douceur des Lowlands à la tourbe des îles — pour finir avec l’assemblage du domaine d’Ardgowrie, mis en bouteille pour la seule maison.',
+      'Ein Abend in der Bibliothek mit unserem Kellermeister: sechs Drams, chronologisch serviert, von der Sanftheit der Lowlands bis zum Torf der Inseln — zum Abschluss der Ardgowrie-Hausverschnitt, exklusiv für das Haus abgefüllt.',
+      'Una velada en la biblioteca con nuestro maestro de bodega: seis drams, servidos en orden cronológico, desde la suavidad de las Lowlands hasta la turba de las islas, terminando con la mezcla de la finca Ardgowrie, embotellada exclusivamente para la casa.',
     ),
     heroImage: IMG.whisky,
     duration: t4('2 hours', '2 heures', '2 Stunden', '2 horas'),
@@ -574,28 +574,28 @@ export const journalPosts: JournalPostI18n[] = [
     heroImage: IMG.whisky,
     body: {
       en: [
-        block('Every bottle of the Craigmore estate blend starts four miles from the front door, at a distillery most maps decline to mention. Glen Ericht employs nine people, two of whom are brothers, one of whom is eighty-one and still noses every cask personally.'),
+        block('Every bottle of the Ardgowrie estate blend starts four miles from the front door, at a distillery most maps decline to mention. Glen Ericht employs nine people, two of whom are brothers, one of whom is eighty-one and still noses every cask personally.'),
         block('The same water', 'h2'),
         block('The burn that feeds their mash tuns rises on the same hill as the spring that supplies our kitchen. I am not romantic about much, but I am romantic about that: the whisky in your glass after dinner and the water that cooked the dinner fell as the same rain.'),
         block('Our blend takes their twelve-year-old as its spine, softened with a Lowland grain and finished in sherry wood for eighteen months in our own cellar. We bottle around six hundred a year. It is for the house, the bar, and guests who ask nicely. It is not for sale anywhere else, which is, we admit, half the pleasure of it.'),
         block('You can visit Glen Ericht with us — the private tasting in the library ends with a dram of their newest cask, and the distillery walk runs most Thursdays in season.'),
       ],
       fr: [
-        block('Chaque bouteille de l’assemblage du domaine de Craigmore commence à six kilomètres de la porte d’entrée, dans une distillerie que la plupart des cartes omettent de mentionner. Glen Ericht emploie neuf personnes, dont deux frères, et l’une d’elles, âgée de quatre-vingt-un ans, nez encore personnellement chaque fût.'),
+        block('Chaque bouteille de l’assemblage du domaine d’Ardgowrie commence à six kilomètres de la porte d’entrée, dans une distillerie que la plupart des cartes omettent de mentionner. Glen Ericht emploie neuf personnes, dont deux frères, et l’une d’elles, âgée de quatre-vingt-un ans, nez encore personnellement chaque fût.'),
         block('La même eau', 'h2'),
         block('Le ruisseau qui alimente leurs cuves de brassage prend sa source sur la même colline que la source qui alimente notre cuisine. Je ne suis pas d’un naturel romantique, mais sur ce point, je le suis : le whisky dans votre verre après le dîner et l’eau qui a cuit ce dîner sont tombés sous forme de la même pluie.'),
         block('Notre assemblage prend leur douze ans comme colonne vertébrale, adouci par un grain des Lowlands et affiné en fûts de xérès pendant dix-huit mois dans notre propre cave. Nous en mettons environ six cents bouteilles en bouteille par an. C’est pour la maison, le bar, et les hôtes qui le demandent gentiment. Il n’est en vente nulle part ailleurs, ce qui, nous l’admettons, en fait la moitié du plaisir.'),
         block('Vous pouvez visiter Glen Ericht avec nous — la dégustation privée à la bibliothèque se termine par un dram de leur fût le plus récent, et la promenade jusqu’à la distillerie a lieu la plupart des jeudis en saison.'),
       ],
       de: [
-        block('Jede Flasche des Craigmore-Hausverschnitts beginnt sechs Kilometer von unserer Haustür entfernt, in einer Destillerie, die die meisten Karten nicht einmal verzeichnen. Glen Ericht beschäftigt neun Menschen, zwei davon Brüder, einer davon einundachtzig Jahre alt und noch immer persönlich damit befasst, jedes Fass zu beriechen.'),
+        block('Jede Flasche des Ardgowrie-Hausverschnitts beginnt sechs Kilometer von unserer Haustür entfernt, in einer Destillerie, die die meisten Karten nicht einmal verzeichnen. Glen Ericht beschäftigt neun Menschen, zwei davon Brüder, einer davon einundachtzig Jahre alt und noch immer persönlich damit befasst, jedes Fass zu beriechen.'),
         block('Dasselbe Wasser', 'h2'),
         block('Der Bach, der ihre Maischebottiche speist, entspringt am selben Hügel wie die Quelle, die unsere Küche versorgt. Ich bin nicht für vieles romantisch veranlagt, aber dafür schon: der Whisky in Ihrem Glas nach dem Essen und das Wasser, mit dem das Essen gekocht wurde, fielen als derselbe Regen.'),
         block('Unser Verschnitt nimmt deren Zwölfjährigen als Rückgrat, abgemildert mit einem Lowland-Grain und achtzehn Monate lang in Sherryfässern in unserem eigenen Keller nachgereift. Wir füllen rund sechshundert Flaschen im Jahr ab. Sie sind für das Haus, die Bar, und Gäste, die freundlich fragen. Er ist nirgendwo sonst käuflich zu erwerben, was, das geben wir zu, die halbe Freude daran ausmacht.'),
         block('Sie können Glen Ericht mit uns besuchen — die private Verkostung in der Bibliothek endet mit einem Dram aus ihrem neuesten Fass, und der Spaziergang zur Destillerie findet in der Saison an den meisten Donnerstagen statt.'),
       ],
       es: [
-        block('Cada botella de la mezcla de la finca Craigmore comienza a seis kilómetros de nuestra puerta, en una destilería que la mayoría de los mapas ni siquiera mencionan. Glen Ericht emplea a nueve personas, dos de ellas hermanos, y una de ellas, de ochenta y un años, todavía cata personalmente cada barril.'),
+        block('Cada botella de la mezcla de la finca Ardgowrie comienza a seis kilómetros de nuestra puerta, en una destilería que la mayoría de los mapas ni siquiera mencionan. Glen Ericht emplea a nueve personas, dos de ellas hermanos, y una de ellas, de ochenta y un años, todavía cata personalmente cada barril.'),
         block('La misma agua', 'h2'),
         block('El arroyo que alimenta sus cubas de maceración nace en la misma colina que el manantial que abastece nuestra cocina. No soy de naturaleza romántica en muchas cosas, pero en esta sí: el whisky en su copa después de la cena y el agua con la que se cocinó esa cena cayeron como la misma lluvia.'),
         block('Nuestra mezcla toma su whisky de doce años como columna vertebral, suavizado con un grano de las Lowlands y terminado en barricas de jerez durante dieciocho meses en nuestra propia bodega. Embotellamos unas seiscientas botellas al año. Son para la casa, el bar, y los huéspedes que lo piden amablemente. No está a la venta en ningún otro lugar, lo cual, admitimos, es la mitad del placer.'),
@@ -670,10 +670,10 @@ export const testimonials: TestimonialI18n[] = [
   {
     guestName: 'A. & J. Pemberton',
     quote: t4(
-      'We have stayed in grander hotels and slept worse in all of them. Craigmore understands the difference between luxury and fuss, and chooses correctly every single time.',
-      'Nous avons séjourné dans des hôtels plus grandioses et y avons toujours moins bien dormi. Craigmore comprend la différence entre le luxe et l’ostentation, et fait le bon choix à chaque fois.',
-      'Wir haben in prunkvolleren Hotels übernachtet und dort durchweg schlechter geschlafen. Craigmore versteht den Unterschied zwischen Luxus und Aufwand und trifft jedes Mal die richtige Wahl.',
-      'Nos hemos alojado en hoteles más grandiosos y hemos dormido peor en todos ellos. Craigmore entiende la diferencia entre el lujo y la ostentación, y elige correctamente cada vez.',
+      'We have stayed in grander hotels and slept worse in all of them. Ardgowrie understands the difference between luxury and fuss, and chooses correctly every single time.',
+      'Nous avons séjourné dans des hôtels plus grandioses et y avons toujours moins bien dormi. Ardgowrie comprend la différence entre le luxe et l’ostentation, et fait le bon choix à chaque fois.',
+      'Wir haben in prunkvolleren Hotels übernachtet und dort durchweg schlechter geschlafen. Ardgowrie versteht den Unterschied zwischen Luxus und Aufwand und trifft jedes Mal die richtige Wahl.',
+      'Nos hemos alojado en hoteles más grandiosos y hemos dormido peor en todos ellos. Ardgowrie entiende la diferencia entre el lujo y la ostentación, y elige correctamente cada vez.',
     ),
     rating: 5,
     roomStayed: 'The Atholl Suite',
@@ -980,7 +980,7 @@ export const directions = [
 export const pressMentions = [
   { outlet: 'Condé Nast Traveller', quote: t4('The new benchmark for the Highland country house.', 'La nouvelle référence de l’hôtel de charme des Highlands.', 'Der neue Maßstab für das Landhotel im Hochland.', 'El nuevo referente del hotel rural de las Highlands.') },
   { outlet: 'The Times', quote: t4('Twelve rooms, four hundred acres, and not a single false note.', 'Douze chambres, quatre cents acres, et pas une seule fausse note.', 'Zwölf Zimmer, vierhundert Morgen, und nicht ein einziger falscher Ton.', 'Doce habitaciones, cuatrocientos acres, y ni una sola nota discordante.') },
-  { outlet: 'Country Life', quote: t4('Craigmore does what the great houses always did — it simply does it better.', 'Craigmore fait ce que les grandes demeures ont toujours fait — elle le fait simplement mieux.', 'Craigmore tut, was die großen Häuser immer getan haben — nur besser.', 'Craigmore hace lo que las grandes casas siempre han hecho: simplemente lo hace mejor.') },
+  { outlet: 'Country Life', quote: t4('Ardgowrie does what the great houses always did — it simply does it better.', 'Ardgowrie fait ce que les grandes demeures ont toujours fait — elle le fait simplement mieux.', 'Ardgowrie tut, was die großen Häuser immer getan haben — nur besser.', 'Ardgowrie hace lo que las grandes casas siempre han hecho: simplemente lo hace mejor.') },
   { outlet: 'The Telegraph', quote: t4('Worth the drive north. Worth, frankly, any drive at all.', 'Le trajet vers le nord en vaut la peine. Honnêtement, n’importe quel trajet en vaudrait la peine.', 'Die Fahrt nach Norden lohnt sich. Ehrlich gesagt, lohnt sich jede Fahrt dorthin.', 'Merece la pena el viaje hacia el norte. Francamente, merece la pena cualquier viaje.') },
 ];
 
@@ -989,7 +989,7 @@ export const menus = [
     name: t4('Breakfast', 'Petit-déjeuner', 'Frühstück', 'Desayuno'),
     note: t4('Served 7.30–10am, table or tray', 'Servi de 7h30 à 10h, à table ou sur plateau', 'Serviert von 7:30 bis 10 Uhr, am Tisch oder auf dem Tablett', 'Servido de 7:30 a 10:00, en mesa o en bandeja'),
     items: [
-      { dish: t4('The full Craigmore', 'Le Craigmore complet', 'Das große Craigmore-Frühstück', 'El Craigmore completo'), detail: t4('Estate sausage, Stornoway black pudding, tattie scone, hen-of-the-morning eggs', 'Saucisse du domaine, boudin noir de Stornoway, galette de pommes de terre, œufs du matin', 'Wurst vom Anwesen, Stornoway Black Pudding, Kartoffelfladen, frische Eier vom Morgen', 'Salchicha de la finca, morcilla de Stornoway, tortita de patata, huevos frescos de la mañana') },
+      { dish: t4('The full Ardgowrie', 'L’Ardgowrie complet', 'Das große Ardgowrie-Frühstück', 'El Ardgowrie completo'), detail: t4('Estate sausage, Stornoway black pudding, tattie scone, hen-of-the-morning eggs', 'Saucisse du domaine, boudin noir de Stornoway, galette de pommes de terre, œufs du matin', 'Wurst vom Anwesen, Stornoway Black Pudding, Kartoffelfladen, frische Eier vom Morgen', 'Salchicha de la finca, morcilla de Stornoway, tortita de patata, huevos frescos de la mañana') },
       { dish: t4('Porridge with cream and heather honey', 'Porridge à la crème et au miel de bruyère', 'Porridge mit Sahne und Heidehonig', 'Porridge con nata y miel de brezo'), detail: t4('Or with a dram, after 9am, no questions', 'Ou avec un dram, après 9h, sans poser de questions', 'Oder mit einem Dram, nach 9 Uhr, ohne Fragen', 'O con un dram, después de las 9:00, sin preguntas') },
       { dish: t4('Smoked haddock omelette', 'Omelette à l’églefin fumé', 'Omelett mit geräuchertem Schellfisch', 'Tortilla de eglefino ahumado'), detail: t4('Arbroath smokie, Mull cheddar, chives from the wall', 'Arbroath smokie, cheddar de Mull, ciboulette du mur', 'Arbroath Smokie, Mull-Cheddar, Schnittlauch von der Gartenmauer', 'Arbroath smokie, cheddar de Mull, cebollino del muro') },
       { dish: t4('Walled garden compote', 'Compote du jardin clos', 'Kompott aus dem ummauerten Garten', 'Compota del jardín amurallado'), detail: t4('Whatever Tom surrendered this week, with crowdie and oats', 'Ce que Tom a bien voulu céder cette semaine, avec du crowdie et de l’avoine', 'Was auch immer Tom diese Woche hergegeben hat, mit Crowdie und Hafer', 'Lo que Tom haya cedido esta semana, con crowdie y avena') },

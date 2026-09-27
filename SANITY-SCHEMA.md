@@ -32,11 +32,11 @@ to design, not something to assume is already built.
 
 | Schema file | Purpose | Key fields |
 |---|---|---|
-| `room.ts` | Room/suite listings | roomType, name, slug, rate, images, description, amenities, occupancy, roomCount |
+| `room.ts` | Room/suite listings | roomType, name, hook, slug, rate, images, description, amenities, occupancy, roomCount |
 | `experience.ts` | Local Experiences (see AGENTS.md §6 — regional exclusivity framing) | name, slug, category, images, description, duration, price |
-| `offer.ts` | Packages/offers | title, slug, images, description, validUntil, priceFrom |
-| `journalPost.ts` | Blog/journal | title, slug, publishedAt, author, coverImage, body (Portable Text) |
-| `testimonial.ts` | Guest reviews | quote, author, location, rating, roomStayed |
+| `offer.ts` | Packages/offers | title, slug, subtitle, images, description, tag, inclusions, validFrom, validUntil, type |
+| `journalPost.ts` | Blog/journal | title, slug, category, author, publishedAt, readingTime, excerpt, heroImage, body (Portable Text) |
+| `testimonial.ts` | Guest reviews | guestName, quote, rating, roomStayed, date, source |
 | `teamMember.ts` | About/team page | name, role, photo, bio |
 
 All six are registered in `sanity/schemas/index.ts` — if you add a new
@@ -59,7 +59,7 @@ clients sell room *categories* ("Garden Suite", "Loch View Suite") that
 can cover many physical rooms, so one `room` document represents a
 category, and `roomCount` (a plain number, display copy only — e.g. "6
 Garden Suites available") says how many. A client who genuinely wants
-individually-named rooms instead (Craigmore House's own demo content is
+individually-named rooms instead (Ardgowrie House's own demo content is
 this case) just puts the room's proper name straight into `roomType` and
 leaves `roomCount` at 1 — there's no separate mode or toggle, it's the
 same field either way. The optional `room.name` field is for the rare
@@ -71,7 +71,7 @@ or the booking flow; that stays the booking engine's job.
 `components/RoomsFilter.tsx` derives its filter tabs from the distinct
 `roomType` values present and hides the filter bar entirely when every
 room has a unique type (no grouping value in a 1:1 tabs-to-items list) —
-so Craigmore's own named-room set renders as an unfiltered grid.
+so Ardgowrie's own named-room set renders as an unfiltered grid.
 
 **Scaling caveat:** this field-level pattern (one Studio field per
 locale, collapsed into one object) is fine editorially through roughly

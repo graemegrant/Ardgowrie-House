@@ -54,6 +54,10 @@ export async function generateMetadata({
       template: `%s — ${hotelConfig.name}`,
     },
     description: pickLocale(hotelConfig.description, locale),
+    // Fictional demo client (see hotel.config.ts) — root-level fallback so
+    // any route that doesn't call lib/seo.ts pageMetadata() is still
+    // noindexed; app/robots.ts and app/sitemap.ts cover the rest.
+    ...(hotelConfig.isDemo ? { robots: { index: false, follow: false } } : {}),
     // Canonical is set per-route via lib/seo.ts pageMetadata(); not inherited
     // from here, so a route that forgets it self-canonicalises rather than
     // pointing at '/'.

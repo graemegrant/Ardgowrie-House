@@ -5,7 +5,7 @@ import { BookButton } from './BookingModal';
 export default async function DirectBookingBanner() {
   const t = await getTranslations('shared');
   return (
-    <div className="bg-gold">
+    <div className="bg-goldbright">
       <div className="mx-auto flex max-w-7xl flex-col items-center justify-between gap-5 px-6 py-7 sm:flex-row lg:px-10">
         <p className="text-center font-body text-sm text-forest sm:text-left">
           <span className="font-medium">{t('bookDirectLabel')}</span>{' '}

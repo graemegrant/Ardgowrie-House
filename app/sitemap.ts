@@ -29,6 +29,10 @@ function withLocales(
 /** Built from the CMS with the static data as fallback, so a room /
  *  experience / post authored only in Sanity still appears. */
 export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
+  // Fictional demo client (see hotel.config.ts) — a noindexed site
+  // shouldn't advertise a sitemap of URLs either.
+  if (hotelConfig.isDemo) return [];
+
   const [rooms, experiences, posts] = await Promise.all([
     sanityFetch<RoomI18n[]>(ROOMS_QUERY, {}, fallbackRooms),
     sanityFetch<ExperienceI18n[]>(EXPERIENCES_QUERY, {}, fallbackExperiences),

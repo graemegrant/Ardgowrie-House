@@ -1,4 +1,5 @@
 import type { Metadata } from 'next';
+import { hotelConfig } from '@/hotel.config';
 import { LOCALES, DEFAULT_LOCALE, bcp47For, type Locale } from '@/lib/locales';
 
 /**
@@ -50,6 +51,10 @@ export function pageMetadata({
   return {
     ...(title ? { title } : {}),
     description,
+    // Fictional demo client (see hotel.config.ts) — defense-in-depth
+    // alongside app/robots.ts and app/sitemap.ts: this mock must never
+    // surface in real search results even if robots.txt is ignored.
+    ...(hotelConfig.isDemo ? { robots: { index: false, follow: false } } : {}),
     alternates: {
       canonical: localizedPath,
       languages: {

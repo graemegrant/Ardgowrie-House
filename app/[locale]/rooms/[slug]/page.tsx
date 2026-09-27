@@ -103,7 +103,7 @@ export default async function RoomDetailPage({ params }: Props) {
           the page title itself (below), so repeating it in the eyebrow
           would just say the same thing twice. subtitle combines name (only
           for the rare case a physical room also has one distinct from its
-          roomType) and view — for Craigmore (name unset) this renders
+          roomType) and view — for Ardgowrie (name unset) this renders
           identically to before the schema change. */}
       <PageHero
         eyebrow={`${t('stayLabel')} · ${hotelConfig.location.locality}`}
@@ -164,7 +164,7 @@ export default async function RoomDetailPage({ params }: Props) {
                   </div>
                 ))}
               </dl>
-              <BookButton roomHint={room.roomType} className="mt-8 w-full rounded-ctrl bg-forest px-8 py-4 font-body text-2xs uppercase tracking-25 text-parchment transition-colors duration-300 hover:bg-gold hover:text-forest" />
+              <BookButton roomHint={room.roomType} className="mt-8 w-full rounded-ctrl bg-forest px-8 py-4 font-body text-2xs uppercase tracking-25 text-parchment transition-colors duration-300 hover:bg-goldbright hover:text-forest" />
               <p className="mt-5 text-center font-body text-xs text-ink/60">
                 {t('orCall')}{' '}
                 <a href={`tel:${hotelConfig.contact.phoneHref}`} className="text-forest underline decoration-gold underline-offset-4">

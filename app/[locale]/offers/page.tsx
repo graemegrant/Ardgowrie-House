@@ -5,7 +5,7 @@ import { sanityFetch } from '@/lib/sanity';
 import { OFFERS_QUERY } from '@/lib/queries';
 import { offers as fallbackOffers, IMG } from '@/lib/data';
 import type { OfferI18n } from '@/lib/types';
-import { resolveOffer } from '@/lib/resolveLocale';
+import { resolveOffer, isOfferActive } from '@/lib/resolveLocale';
 import { isLocale, DEFAULT_LOCALE, type Locale } from '@/lib/locales';
 import PageHero from '@/components/PageHero';
 import OfferCard from '@/components/OfferCard';
@@ -27,7 +27,7 @@ export default async function OffersPage({ params }: { params: Promise<{ locale:
   const { locale: rawLocale } = await params;
   const locale: Locale = isLocale(rawLocale) ? rawLocale : DEFAULT_LOCALE;
   const rawOffers = await sanityFetch<OfferI18n[]>(OFFERS_QUERY, {}, fallbackOffers);
-  const offers = rawOffers.map((o) => resolveOffer(o, locale));
+  const offers = rawOffers.map((o) => resolveOffer(o, locale)).filter((o) => isOfferActive(o));
   const t = await getTranslations('offersPage');
 
   return (

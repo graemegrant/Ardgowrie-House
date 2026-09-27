@@ -164,7 +164,7 @@ function BookingModalInner({ onClose, roomHint }: { onClose: () => void; roomHin
             </div>
             <button
               type="submit"
-              className="w-full rounded-ctrl bg-forest px-8 py-4 font-body text-2xs uppercase tracking-25 text-parchment transition-colors duration-300 hover:bg-gold hover:text-forest"
+              className="w-full rounded-ctrl bg-forest px-8 py-4 font-body text-2xs uppercase tracking-25 text-parchment transition-colors duration-300 hover:bg-goldbright hover:text-forest"
             >
               {tCommon('checkAvailability')}
             </button>

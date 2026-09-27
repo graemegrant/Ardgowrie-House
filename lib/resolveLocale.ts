@@ -31,6 +31,7 @@ export function resolveRoom(raw: RoomI18n, locale: Locale): Room {
     ...raw,
     roomType: pickLocale(raw.roomType, locale) ?? '',
     name: raw.name ? pickLocale(raw.name, locale) : undefined,
+    hook: raw.hook ? pickLocale(raw.hook, locale) : undefined,
     description: pickLocale(raw.description, locale) ?? '',
     imageAlt: pickLocale(raw.imageAlt, locale),
     amenities: pickLocaleArray(raw.amenities, locale),
@@ -58,6 +59,19 @@ export function resolveOffer(raw: OfferI18n, locale: Locale): Offer {
     tag: pickLocale(raw.tag, locale),
     inclusions: raw.inclusions ? pickLocaleArray(raw.inclusions, locale) : undefined,
   };
+}
+
+/**
+ * validFrom/validUntil are captured on every offer but nothing filtered on
+ * them — an expired seasonal offer would sit on /offers forever. Dates are
+ * plain 'YYYY-MM-DD' strings (Sanity's `date` type), which sort correctly
+ * with a lexical comparison against another ISO date string, so no Date
+ * parsing is needed. Call after resolveOffer, before rendering.
+ */
+export function isOfferActive(offer: Offer, today: string = new Date().toISOString().slice(0, 10)): boolean {
+  if (offer.validFrom && today < offer.validFrom) return false;
+  if (offer.validUntil && today > offer.validUntil) return false;
+  return true;
 }
 
 export function resolveJournalPost(raw: JournalPostI18n, locale: Locale): JournalPost {

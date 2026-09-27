@@ -16,6 +16,12 @@ const AI_CRAWLERS = [
 ];
 
 export default function robots(): MetadataRoute.Robots {
+  // Fictional demo client (see hotel.config.ts) — block crawling entirely
+  // rather than just the CMS/API, and don't advertise a sitemap.
+  if (hotelConfig.isDemo) {
+    return { rules: [{ userAgent: '*', disallow: '/' }] };
+  }
+
   const disallow = ['/studio', '/api'];
   return {
     rules: [
