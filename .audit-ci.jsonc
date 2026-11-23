@@ -25,6 +25,23 @@
     // processing during `next build`), not shipped to the browser or
     // touched by the request path. Fix requires next@16.x (breaking).
     "GHSA-6g55-p6wh-862q", // postcss, high
-    "GHSA-r28c-9q8g-f849" // postcss, high
+    "GHSA-r28c-9q8g-f849", // postcss, high
+
+    // adm-zip and @xhmikosr/decompress, new advisories (Nov 2026) — reached
+    // only through @sanity/cli's @sanity/runtime-cli and deploy tooling
+    // (Sanity's own hosting and functions), which this site never runs: it
+    // deploys via Vercel, and none of it is in the site's runtime bundle.
+    // Fix requires the sanity@6.x major upgrade (sign-off, AGENTS.md §1).
+    "GHSA-7q85-xj36-vmfc", // adm-zip, high
+    "GHSA-8238-w5pm-2374", // adm-zip, high
+    "GHSA-j5f4-cc29-5x44", // adm-zip, high
+    "GHSA-rcw4-f5rp-g42v", // adm-zip, high
+    "GHSA-hrh2-vp3x-79xf", // @xhmikosr/decompress, critical
+
+    // zod (Nov 2026) — only the copy inside @sanity/codegen, the
+    // developer-run `sanity typegen` tool. The site never validates visitor
+    // input with that copy, and it isn't in the runtime bundle. Fix
+    // requires the sanity@6.x major upgrade.
+    "GHSA-mrhx-c7xc-m3w5" // zod, high
   ]
 }
